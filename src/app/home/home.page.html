@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" class="ion-activatable ripple-parent">
+      <ion-menu-button></ion-menu-button>
+      <ion-ripple-effect type="bounded"></ion-ripple-effect>
+    </ion-buttons>
+    <ion-title>Inicio</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="ion-activatable ripple-parent" (click)="takeSnap()">
+        <ion-icon slot="icon-only" ios="camera-outline" md="camera-sharp"></ion-icon>
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row *ngIf="photo === null" class="ion-justify-content-center">
+      <ion-col size="8">
+        <img class="preview" src="assets/image.svg" (click)="takeSnap()">
+      </ion-col>
+      <ion-col size="12">
+        <i class="note text-center">* Haga clic en ícono de cámara para obtener una fotografía.</i>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="photo !== null" class="ion-justify-content-center">
+      <ion-col size="12">
+        <img class="" [src]="photo">
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="8">
+        <ion-button (click)="detect()" [disabled]="photo === null" color="tertiary" expand="block" size="large" shape="round">
+          Analizar
+          <ion-icon slot="end" name="leaf"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

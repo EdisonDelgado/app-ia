@@ -1,0 +1,45 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content class="profile">
+
+        <div>
+          <ion-grid  class="ion-margin-top ion-margin-bottom">
+            <ion-row class="ion-justify-content-center ion-margin-top">
+              <ion-avatar>
+                <img src="assets/default_avatar.png">
+              </ion-avatar>
+            </ion-row>
+            <ion-row class="ion-justify-content-center">
+              <h3 class="user-title">{{user.name}}</h3>
+            </ion-row>
+            <ion-row class="ion-justify-content-center">
+              <div class="note">{{user.email}}</div>
+            </ion-row>
+            <!--ion-row class="ion-justify-content-center">
+              <div class="note">{{user.data.comuna.provincia.region.region}}, {{user.data.comuna.provincia.provincia}}, {{user.data.comuna.comuna}}</div>
+            </ion-row-->
+          </ion-grid>
+        </div>
+
+        <ion-list id="inbox-list">
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        <ion-list id="inbox-list" class="logout">
+          <ion-menu-toggle>
+            <ion-item  lines="none" (click)="logout()">
+              <ion-icon slot="start" ios="log-out-outline" md="log-out-sharp"></ion-icon>
+              <ion-label>Cerrar sesión</ion-label>
+          </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
