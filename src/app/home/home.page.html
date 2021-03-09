@@ -15,27 +15,37 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <ion-progress-bar *ngIf="predictBoolean" type="indeterminate"></ion-progress-bar>
   <ion-grid>
+    <ion-row class="ion-justify-content-center" *ngIf="!predictBoolean && predictString!==''">
+      <h1 class="prediction"> {{predictString}}</h1>
+    </ion-row>
     <ion-row *ngIf="photo === null" class="ion-justify-content-center">
-      <ion-col size="8">
+      <ion-col size-md="8" size-lg="4">
         <img class="preview" src="assets/image.svg" (click)="takeSnap()">
       </ion-col>
-      <ion-col size="12">
-        <i class="note text-center">* Haga clic en ícono de cámara para obtener una fotografía.</i>
-      </ion-col>
+
     </ion-row>
 
     <ion-row *ngIf="photo !== null" class="ion-justify-content-center">
-      <ion-col size="12">
+      <ion-col size-md="12" size-lg="4">
         <img class="" [src]="photo">
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-center">
-      <ion-col size="8">
-        <ion-button (click)="detect()" [disabled]="photo === null" color="tertiary" expand="block" size="large" shape="round">
+      <ion-col size-lg="4" size-md="6">
+        <ion-button *ngIf="predictString===''" (click)="detect()" [disabled]="photo === null" color="tertiary"
+          expand="block" shape="round">
           Analizar
           <ion-icon slot="end" name="leaf"></ion-icon>
         </ion-button>
+        <ion-button *ngIf="predictString" (click)="capture()" color="tertiary" expand="block" shape="round">
+          subir imagen
+          <ion-icon slot="end" name="add"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size-md="12" size-lg="12">
+        <i class="note">* Haga clic en ícono de cámara para obtener una fotografía.</i>
       </ion-col>
     </ion-row>
   </ion-grid>

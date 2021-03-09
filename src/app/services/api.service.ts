@@ -16,7 +16,7 @@ export class ApiService {
    * Sube una nueva imagen para su clasificación
    * @param imageBase64 base64 imagen
    */
-  detect(imageBase64: any): Observable<any> {
-    return this.http.post(`${API_SERVER}/detect`, imageBase64, { headers: this.headers });
+  detect(formdata: any): Observable<any> {
+    return this.http.post(`${API_SERVER}/predict`, formdata, { headers: this.headers });
   }
 }
